@@ -1,0 +1,34 @@
+[core]
+reloadable = true
+order = 0
+
+[package]
+version = "1.0.0"
+category = "Simulation"
+title = "Isaac Bridge"
+description = "Runs a Sodero robot controller against Isaac Sim: speaks the Sodero simulator wire (joints, IMU, root pose, tracked objects, RGB-D cameras), so the controller's simulation gateways connect to this Isaac Sim as they do to the Sodero cloud."
+authors = ["Sodero"]
+keywords = ["simulation", "bridge", "robot", "gateway", "camera", "hardware-in-the-loop"]
+changelog = "docs/CHANGELOG.md"
+readme = "docs/README.md"
+
+[dependencies]
+"omni.kit.uiapp" = {}
+"omni.kit.pipapi" = {}
+"isaacsim.gui.components" = {}
+"isaacsim.core.api" = {}
+"isaacsim.core.prims" = {}
+"isaacsim.core.simulation_manager" = {}
+"omni.replicator.core" = {optional = true}   # cameras (render products and annotators); without it, no cameras
+
+[[python.module]]
+name = "scripts.extension"
+
+[python.pipapi]
+use_online_index = true
+requirements = [
+    "pyzmq>=25",
+]
+modules = [
+    "zmq",
+]
